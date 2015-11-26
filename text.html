@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="jquery.pForm.js"></script>
+  <script>
+    $(function () {
+      $('form').submit(function () {
+        var formObj = $(this).formParams(true);
+        $('#result').text(JSON.stringify(formObj, null, 2));
+        return false;
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <h2>Form</h2>
+  <form action="" method="post">
+    First Name:
+    <input type="text" name="name[first]" maxlength="12" size="12" />
+    <br/> Last Name:
+    <input type="text" name="name[last]" maxlength="36" size="12" />
+    <br/> Age:
+    <input type="number" name="age" size="2" />
+    <br/> Gender:
+    <br/> Male:
+    <input type="radio" name="gender" value="Male" />
+    <br/> Female:
+    <input type="radio" name="gender" value="Female" />
+    <br/> Favorite Food:
+    <br/> Steak:
+    <input type="checkbox" name="food[steak]" />
+    <br/> Pizza:
+    <input type="checkbox" name="food[pizza]" />
+    <br/> Chicken:
+    <input type="checkbox" name="food[chicken]" value="Chicken" />
+    <br/>
+    <textarea wrap="physical" cols="20" name="quote" rows="5">Enter your favorite quote!</textarea>
+    <br/> Select a Level of Education:
+    <br/>
+    <select name="education">
+      <option value="Jr.High">Jr.High</option>
+      <option value="HighSchool">HighSchool</option>
+      <option value="College">College</option>
+    </select>
+    <br/> Select your favorite time of day:
+    <br/>
+    <select size="3" name="TofD" multiple>
+      <option value="Morning">Morning</option>
+      <option value="Day">Day</option>
+      <option value="Night">Night</option>
+    </select>
+    <p>
+      <input type="submit" />
+    </p>
+  </form>
+  <h2>JSON</h2>
+  <pre id="result">
+</pre>
+</body>
+
+</html>
