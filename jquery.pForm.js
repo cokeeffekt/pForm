@@ -27,7 +27,6 @@
       }
     },
 
-
     setParams: function (params, clear) {
       /*jshint eqeqeq: false*/
 
@@ -115,18 +114,23 @@
         if ($el.data('changed') !== true && value === $el.attr('placeholder')) value = '';
 
         if (convert) {
-          if (el.type === 'number')
-            if (isNumber(value)) {
+          if (isNumber(value)) {
+            if (el.type === 'number')
               tv = parseFloat(value);
-              cmp = tv + '';
+            cmp = tv + '';
 
-              // convert (string)100.00 to (int)100
-              if (value.indexOf('.') > 0) cmp = tv.toFixed(value.split('.')[1].length);
-              if (cmp === value) value = tv;
-            } else if (value === 'true') value = true;
-          else if (value === 'false') value = false;
-          if (value === '') value = null;
+            // convert (string)100.00 to (int)100
+            if (value.indexOf('.') > 0) cmp = tv.toFixed(value.split('.')[1].length);
+            if (cmp === value) value = tv;
+          }
+
+          if (['select-one', 'select', 'radio', 'checkbox'].indexOf(el.type) > -1) {
+            if (value === 'true') value = true;
+            if (value === 'false') value = false;
+          }
         }
+
+        if (value === '') value = null;
 
         current = data;
         // go through and create nested objects
